@@ -22,7 +22,7 @@ namespace xadrez_console.board
             ExceptionValidatePosition(position);
             return Pieces[position.Row,position.Column];
         }
-        public void IncludePieces(Piece piece, Position position) // Inclui determinada peça em determinada posição
+        public void IncludePiece(Piece piece, Position position) // Inclui determinada peça em determinada posição
         {
             if (ExistPiece(position))
             {
@@ -34,6 +34,20 @@ namespace xadrez_console.board
                 Pieces[position.Row, position.Column] = piece;
             }
             
+        }
+        public Piece RemovePiece(Position position)
+        {
+            if (ExistPiece(position))
+            {
+                Piece aux = ReturnPiece(position);
+                Pieces[position.Row, position.Column] = null;
+                return aux;
+            }
+            else
+            {
+                return null;
+            }
+
         }
         public bool ValidatePosition(Position position) // Valida se existe determinada posição no tabuleiro
         {

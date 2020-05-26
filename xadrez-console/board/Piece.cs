@@ -10,7 +10,7 @@ namespace xadrez_console.board
         public Color Color { get; protected set; } // Cor da peça
         public Position Position { get; set; } // Posição da peça
         public Board Board { get; protected set; } // Tabuleiro
-        public int AmountMoves { get; set; } // Quantidade de movimentos
+        public int AmountMoves { get; protected set; } // Quantidade de movimentos
 
         public Piece(Color color, Board board) /// Construtor
         {
@@ -18,6 +18,10 @@ namespace xadrez_console.board
             Position = null;
             Board = board;
             AmountMoves = 0;
+        }
+        public void IncreaseAmountMoves() //Aumenta a quantidade de movimentos
+        {
+            AmountMoves++;
         }
     }
 }
