@@ -7,15 +7,15 @@ namespace xadrez_console.board
 {
     class Piece
     {
-        public Color Color { get; protected set; }
-        public Position Position { get; set; }
-        public Board Board { get; protected set; }
-        public int AmountMoves { get; set; }
+        public Color Color { get; protected set; } // Cor da peça
+        public Position Position { get; set; } // Posição da peça
+        public Board Board { get; protected set; } // Tabuleiro
+        public int AmountMoves { get; set; } // Quantidade de movimentos
 
-        public Piece(Color color, Position position, Board board)
+        public Piece(Color color, Board board) /// Construtor
         {
             Color = color;
-            Position = position;
+            Position = null;
             Board = board;
             AmountMoves = 0;
         }
