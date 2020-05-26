@@ -21,6 +21,7 @@ namespace xadrez_console
                 board.IncludePieces(new Bishop(board, Color.Black), new Position(0, 5));
                 board.IncludePieces(new Horse(board, Color.Black), new Position(0, 6));
                 board.IncludePieces(new Rook(board, Color.Black), new Position(0, 7));
+                board.IncludePieces(new Rook(board, Color.White), new Position(7, 7));
                 for (int i = 0; i < 8; i++)
                 {
                     board.IncludePieces(new Pawn(board, Color.Black), new Position(1, i));

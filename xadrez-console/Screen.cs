@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using xadrez_console.board;
+using xadrez_console.board.Enums;
 namespace xadrez_console
 {
     class Screen
@@ -13,10 +15,10 @@ namespace xadrez_console
                 Console.Write(8-i + " ");
                 for (int j = 0; j < board.Columns; j++) // Percorre as colunas da matriz
                 {
-                    
                     if (board.ReturnPiece(new Position(i,j)) != null)
                     {
-                        Console.Write(board.ReturnPiece(new Position(i,j)) + " ");
+                        PrintPiece(board.ReturnPiece(new Position(i,j)));
+                        Console.Write(" ");
                     }
                     else
                     {
@@ -25,7 +27,21 @@ namespace xadrez_console
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  a b c d e f g h");
+            Console.WriteLine("  A B C D E F G H");
+        }
+        public static void PrintPiece(Piece piece)
+        {
+            if (piece.Color == Color.Black)
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write(piece);
+                Console.ForegroundColor = aux;
+            }
+            else if (piece.Color == Color.White)
+            {
+                Console.Write(piece);
+            }
         }
     }
 }

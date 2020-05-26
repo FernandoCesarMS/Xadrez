@@ -11,7 +11,7 @@ namespace xadrez_console.ChessGame
         public int Row { get; set; }
         public char Column { get; set; }
 
-        public ChessPosition(char column, char row)
+        public ChessPosition(char column, int row)
         {
             Row = row;
             Column = column;
@@ -62,6 +62,10 @@ namespace xadrez_console.ChessGame
             {
                 throw new BoardException("This position doesn't exist");
             }
+        }
+        public override string ToString()
+        {
+            return "" + Row + Column;
         }
     }
 }

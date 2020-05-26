@@ -15,7 +15,7 @@ namespace xadrez_console.board
         }
         public override string ToString() // Printa a posição
         {
-            return Row + ", " + Column;
+            return Row + "," + Column;
         }
     }
 }
