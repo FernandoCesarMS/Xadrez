@@ -25,7 +25,7 @@ namespace xadrez_console
                 {
                     board.IncludePieces(new Pawn(board, Color.Black), new Position(1, i));
                 }
-                
+                Screen.PrintBoard(board);
             }
             catch (BoardException e)
             {
@@ -33,7 +33,7 @@ namespace xadrez_console
             }
             
             
-            Screen.PrintBoard(board);
+            
         }
     }
 }
