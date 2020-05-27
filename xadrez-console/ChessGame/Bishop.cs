@@ -11,6 +11,12 @@ namespace xadrez_console.ChessGame
         {
 
         }
+
+        public override bool[,] PossibleMovements()
+        {
+            throw new NotImplementedException();
+        }
+
         public override string ToString()
         {
             return "B";

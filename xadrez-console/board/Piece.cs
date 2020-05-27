@@ -5,7 +5,7 @@ using xadrez_console.board.Enums;
 
 namespace xadrez_console.board
 {
-    class Piece
+    abstract class Piece
     {
         public Color Color { get; protected set; } // Cor da peça
         public Position Position { get; set; } // Posição da peça
@@ -23,5 +23,6 @@ namespace xadrez_console.board
         {
             AmountMoves++;
         }
+        public abstract bool[,] PossibleMovements();
     }
 }

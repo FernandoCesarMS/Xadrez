@@ -18,9 +18,13 @@ namespace xadrez_console
                     Console.Clear();
                     Screen.PrintBoard(chessMoves.Board);
                     Console.WriteLine();
-                    Console.WriteLine("Vez do Player: " + chessMoves.CurrentPlayer);
+                    Console.WriteLine("Vez da Cor: " + chessMoves.CurrentPlayer);
                     Console.Write("Origem: ");
                     Position origin = Screen.readPosition().ReturnPosition();
+
+                    Console.Clear();
+                    bool[,] possibleMovements = chessMoves.Board.ReturnPiece(origin).PossibleMovements();
+                    Screen.PrintBoard(chessMoves.Board, possibleMovements);
                     Console.Write("Destino: ");
                     Position destiny = Screen.readPosition().ReturnPosition();
                     chessMoves.MakeMoviment(origin, destiny);

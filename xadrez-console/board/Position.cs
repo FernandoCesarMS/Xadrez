@@ -13,6 +13,11 @@ namespace xadrez_console.board
             Column = column;
             Row = row;
         }
+        public void ChangePosition(int row, int column)
+        {
+            Column = column;
+            Row = row;
+        }
         public override string ToString() // Printa a posição
         {
             return Row + "," + Column;
