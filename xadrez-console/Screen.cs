@@ -4,6 +4,8 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using xadrez_console.board;
 using xadrez_console.board.Enums;
+using xadrez_console.ChessGame;
+
 namespace xadrez_console
 {
     class Screen
@@ -29,7 +31,7 @@ namespace xadrez_console
             }
             Console.WriteLine("  A B C D E F G H");
         }
-        public static void PrintPiece(Piece piece)
+        public static void PrintPiece(Piece piece) // Printa na tela a peça com suas respectivas cores
         {
             if (piece.Color == Color.Black)
             {
@@ -42,6 +44,13 @@ namespace xadrez_console
             {
                 Console.Write(piece);
             }
+        }
+        public static ChessPosition readPosition()
+        {
+            string entrada = Console.ReadLine();
+            char column = entrada[0];
+            int row = int.Parse(entrada[1] + "");
+            return new ChessPosition(column,row);
         }
     }
 }

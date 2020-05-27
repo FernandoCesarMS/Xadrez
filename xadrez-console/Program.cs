@@ -10,16 +10,21 @@ namespace xadrez_console
     {
         static void Main(string[] args)
         {
+            ChessMoves chessMoves = new ChessMoves();
             try
             {
-                ChessMoves chessMoves = new ChessMoves();
-                Screen.PrintBoard(chessMoves.Board);
-                chessMoves.MakeMoviment(new ChessPosition('a', 7).ReturnPosition(), new ChessPosition('a', 2).ReturnPosition());
-                Console.WriteLine();
-                Screen.PrintBoard(chessMoves.Board);
-                Console.WriteLine();
-                chessMoves.MakeMoviment(new ChessPosition('a', 2).ReturnPosition(), new ChessPosition('a', 7).ReturnPosition());
-                Screen.PrintBoard(chessMoves.Board);
+                while (!chessMoves.Ended) 
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(chessMoves.Board);
+                    Console.WriteLine();
+                    Console.WriteLine("Vez do Player: " + chessMoves.CurrentPlayer);
+                    Console.Write("Origem: ");
+                    Position origin = Screen.readPosition().ReturnPosition();
+                    Console.Write("Destino: ");
+                    Position destiny = Screen.readPosition().ReturnPosition();
+                    chessMoves.MakeMoviment(origin, destiny);
+                }
             }
             catch (BoardException e)
             {

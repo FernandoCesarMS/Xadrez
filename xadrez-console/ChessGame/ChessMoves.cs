@@ -10,13 +10,14 @@ namespace xadrez_console.ChessGame
     {
         public Board Board { get; private set; }
         private int Turn;
-        private Color CurrentPlayer;
-
+        public Color CurrentPlayer { get; private set; }
+        public bool Ended;
         public ChessMoves()
         {
             Board = new Board(8, 8); // O tabuleiro de xadrez é sempre 8x8
             Turn = 1; // Turno atual do jogo
             CurrentPlayer = Color.White; // Xadrez começa sempre com as peças brancas
+            Ended = false;
             IncludeInitialPieces();
         }
 
@@ -26,6 +27,15 @@ namespace xadrez_console.ChessGame
             Board.RemovePiece(finalPosition); // Remove a peça que estava no destino
             Board.IncludePiece(movingPiece,finalPosition); // Coloca a peça inicial na posição desejada
             movingPiece.IncreaseAmountMoves(); // Aumenta o número de movimentos da peça que se movimentou
+            Turn++;
+            if (CurrentPlayer == Color.White)
+            {
+                CurrentPlayer = Color.Black;
+            }
+            else
+            {
+                CurrentPlayer = Color.White;
+            }
         }
         private void IncludeInitialPieces()
         {
