@@ -23,6 +23,15 @@ namespace xadrez_console.board
         {
             AmountMoves++;
         }
+        protected bool VerifyMovement(Position position)
+        {
+            bool returnVerifyMovement = true;
+            if (Board.ExistPiece(position) && Color == Board.ReturnPiece(position).Color)
+            {
+                returnVerifyMoviment = false;
+            }
+            return returnVerifyMovement;
+        }
         public abstract bool[,] PossibleMovements();
     }
 }

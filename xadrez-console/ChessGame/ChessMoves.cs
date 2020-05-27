@@ -21,20 +21,23 @@ namespace xadrez_console.ChessGame
             IncludeInitialPieces();
         }
 
-        public void MakeMoviment(Position initialPosition, Position finalPosition) //Executa o movimento das peças
+        public void MakeMoviment(Position initialPosition, Position finalPosition, bool[,] possibleMovements) //Executa o movimento das peças
         {
-            Piece movingPiece = Board.RemovePiece(initialPosition); //Tira a peça que vai se mover do local de onde ela estava
-            Board.RemovePiece(finalPosition); // Remove a peça que estava no destino
-            Board.IncludePiece(movingPiece,finalPosition); // Coloca a peça inicial na posição desejada
-            movingPiece.IncreaseAmountMoves(); // Aumenta o número de movimentos da peça que se movimentou
-            Turn++;
-            if (CurrentPlayer == Color.White)
+            if (possibleMovements[finalPosition.Row, finalPosition.Column])
             {
-                CurrentPlayer = Color.Black;
-            }
-            else
-            {
-                CurrentPlayer = Color.White;
+                Piece movingPiece = Board.RemovePiece(initialPosition); //Tira a peça que vai se mover do local de onde ela estava
+                Board.RemovePiece(finalPosition); // Remove a peça que estava no destino
+                Board.IncludePiece(movingPiece, finalPosition); // Coloca a peça inicial na posição desejada
+                movingPiece.IncreaseAmountMoves(); // Aumenta o número de movimentos da peça que se movimentou
+                Turn++;
+                if (CurrentPlayer == Color.White)
+                {
+                    CurrentPlayer = Color.Black;
+                }
+                else
+                {
+                    CurrentPlayer = Color.White;
+                }
             }
         }
         private void IncludeInitialPieces()

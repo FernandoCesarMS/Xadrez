@@ -10,15 +10,7 @@ namespace xadrez_console.ChessGame
         {
 
         }
-        private bool VerifyMoviment(Position position)
-        {
-            bool returnVerifyMoviment = true;
-            if (Board.ExistPiece(position) && Color == Board.ReturnPiece(position).Color)
-            {
-                returnVerifyMoviment = false;
-            }
-            return returnVerifyMoviment;
-        }
+        
         public override bool[,] PossibleMovements()
         {
             bool[,] possibleMoviment = new bool[8, 8];
@@ -28,7 +20,7 @@ namespace xadrez_console.ChessGame
                 {
                     if (Math.Abs(i - Position.Row) <= 1 && Math.Abs(j - Position.Column) <= 1 && (i != Position.Row || j != Position.Column))
                     {
-                        possibleMoviment[i,j] = VerifyMoviment(new Position(i, j));
+                        possibleMoviment[i,j] = VerifyMovement(new Position(i, j));
                     }
                 }
             }

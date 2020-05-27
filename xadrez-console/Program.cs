@@ -27,7 +27,7 @@ namespace xadrez_console
                     Screen.PrintBoard(chessMoves.Board, possibleMovements);
                     Console.Write("Destino: ");
                     Position destiny = Screen.readPosition().ReturnPosition();
-                    chessMoves.MakeMoviment(origin, destiny);
+                    chessMoves.MakeMoviment(origin, destiny,possibleMovements);
                 }
             }
             catch (BoardException e)
