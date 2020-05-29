@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using xadrez_console.board;
 using xadrez_console.board.Enums;
+using xadrez_console.board.Exceptions;
 
 namespace xadrez_console.ChessGame
 {
     class ChessMoves
     {
         public Board Board { get; private set; }
-        private int Turn;
+        public int Turn { get; private set; }
         public Color CurrentPlayer { get; private set; }
         public bool Ended;
         public ChessMoves()
@@ -20,7 +21,28 @@ namespace xadrez_console.ChessGame
             Ended = false;
             IncludeInitialPieces();
         }
-
+        public void VerifyInitialPosition(Position initialPosition)
+        {
+            if (Board.ReturnPiece(initialPosition) == null)
+            {
+                throw new BoardException("Don't exist a piece in this position");
+            }
+            if (CurrentPlayer != Board.ReturnPiece(initialPosition).Color)
+            {
+                throw new BoardException("Wrong color");
+            }
+            if (!Board.ReturnPiece(initialPosition).ExistPossibleMovements())
+            {
+                throw new BoardException("This piece cannot make a movement");
+            }
+        }
+        public void VerifyFinalPosition(Position initialPosition, Position finalPosition)
+        {
+            if (!Board.ReturnPiece(initialPosition).PossibleMovements()[finalPosition.Row,finalPosition.Column])
+            {
+                throw new BoardException("Invalid final position! ");
+            }
+        }
         public void MakeMoviment(Position initialPosition, Position finalPosition, bool[,] possibleMovements) //Executa o movimento das peças
         {
             if (possibleMovements[finalPosition.Row, finalPosition.Column])

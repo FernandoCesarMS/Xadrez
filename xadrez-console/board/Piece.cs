@@ -23,12 +23,29 @@ namespace xadrez_console.board
         {
             AmountMoves++;
         }
+        public bool ExistPossibleMovements()
+        {
+            bool[,] possibleMovements = PossibleMovements();
+            bool returnExistPossibleMovements = false;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (possibleMovements[i, j])
+                    {
+                        returnExistPossibleMovements = true;
+                    }
+                }
+            }
+            return returnExistPossibleMovements;
+
+        }
         protected bool VerifyMovement(Position position)
         {
             bool returnVerifyMovement = true;
             if (Board.ExistPiece(position) && Color == Board.ReturnPiece(position).Color)
             {
-                returnVerifyMoviment = false;
+                returnVerifyMovement = false;
             }
             return returnVerifyMovement;
         }

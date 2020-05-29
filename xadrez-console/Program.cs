@@ -15,19 +15,32 @@ namespace xadrez_console
             {
                 while (!chessMoves.Ended) 
                 {
-                    Console.Clear();
-                    Screen.PrintBoard(chessMoves.Board);
-                    Console.WriteLine();
-                    Console.WriteLine("Vez da Cor: " + chessMoves.CurrentPlayer);
-                    Console.Write("Origem: ");
-                    Position origin = Screen.readPosition().ReturnPosition();
-
-                    Console.Clear();
-                    bool[,] possibleMovements = chessMoves.Board.ReturnPiece(origin).PossibleMovements();
-                    Screen.PrintBoard(chessMoves.Board, possibleMovements);
-                    Console.Write("Destino: ");
-                    Position destiny = Screen.readPosition().ReturnPosition();
-                    chessMoves.MakeMoviment(origin, destiny,possibleMovements);
+                    try
+                    {
+                        Console.Clear();
+                        Screen.PrintBoard(chessMoves.Board);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + chessMoves.Turn);
+                        Console.WriteLine("Aguardando jogada: " + chessMoves.CurrentPlayer);
+                        Console.Write("Origem: ");
+                        Position origin = Screen.readPosition().ReturnPosition();
+                        chessMoves.VerifyInitialPosition(origin);
+                        Console.Clear();
+                        bool[,] possibleMovements = chessMoves.Board.ReturnPiece(origin).PossibleMovements();
+                        Screen.PrintBoard(chessMoves.Board, possibleMovements);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + chessMoves.Turn);
+                        Console.WriteLine("Aguardando jogada: " + chessMoves.CurrentPlayer);
+                        Console.Write("Destino: ");
+                        Position destiny = Screen.readPosition().ReturnPosition();
+                        chessMoves.VerifyFinalPosition(origin, destiny);
+                        chessMoves.MakeMoviment(origin, destiny, possibleMovements);
+                    }
+                    catch (BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
             }
             catch (BoardException e)
