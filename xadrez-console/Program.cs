@@ -17,21 +17,15 @@ namespace xadrez_console
                 {
                     try
                     {
-                        Console.Clear();
-                        Screen.PrintBoard(chessMoves.Board);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + chessMoves.Turn);
-                        Console.WriteLine("Aguardando jogada: " + chessMoves.CurrentPlayer);
-                        Console.Write("Origem: ");
+                        Screen.ShowBoard(chessMoves);
+                        Console.Write("\nOrigem: ");
                         Position origin = Screen.readPosition().ReturnPosition();
                         chessMoves.VerifyInitialPosition(origin);
                         Console.Clear();
                         bool[,] possibleMovements = chessMoves.Board.ReturnPiece(origin).PossibleMovements();
-                        Screen.PrintBoard(chessMoves.Board, possibleMovements);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + chessMoves.Turn);
-                        Console.WriteLine("Aguardando jogada: " + chessMoves.CurrentPlayer);
-                        Console.Write("Destino: ");
+                        Screen.ShowBoard(chessMoves,possibleMovements);
+                        
+                        Console.Write("\nDestino: ");
                         Position destiny = Screen.readPosition().ReturnPosition();
                         chessMoves.VerifyFinalPosition(origin, destiny);
                         chessMoves.MakeMoviment(origin, destiny, possibleMovements);
